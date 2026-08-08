@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a7dd8f48-4102-4656-bdc5-c9abd37fb896" activeEnvironment="Default" name="soap-with-attachments-apache-cxf" resourceRoot="" soapui-version="5.9.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="934c6c32-6109-47b1-91b5-ffff4d5459da" wsaVersion="NONE" name="DocumentServiceSoapBinding" type="wsdl" bindingName="{http://example.com/document}DocumentServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/documents?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/documents?wsdl"><con:part><con:url>http://localhost:8080/services/documents?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="DocumentService" targetNamespace="http://example.com/document" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://example.com/document" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://example.com/document" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+      <xs:import namespace="http://www.w3.org/2005/05/xmlmime"/>
+      <xs:element name="SubmitDocumentRequest" type="tns:SubmitDocumentRequestType"/>
+      <xs:element name="SubmitDocumentResponse" type="tns:SubmitDocumentResponseType"/>
+      <xs:element name="submitDocument" type="tns:submitDocument"/>
+      <xs:element name="submitDocumentResponse" type="tns:submitDocumentResponse"/>
+      <xs:complexType name="submitDocument">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="request" type="tns:SubmitDocumentRequestType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SubmitDocumentRequestType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="title" type="xs:string"/>
+          <xs:element minOccurs="0" name="description" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="attachments" nillable="true" type="tns:attachment"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="attachment">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="filename" type="xs:string"/>
+          <xs:element minOccurs="0" name="mimeType" type="xs:string"/>
+          <xs:element minOccurs="0" name="content" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="submitDocumentResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:SubmitDocumentResponseType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SubmitDocumentResponseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="status" type="xs:string"/>
+          <xs:element minOccurs="0" name="reference" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="submitDocument">
+    <wsdl:part element="tns:submitDocument" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="submitDocumentResponse">
+    <wsdl:part element="tns:submitDocumentResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DocumentServiceEndpoint">
+    <wsdl:operation name="submitDocument">
+      <wsdl:input message="tns:submitDocument" name="submitDocument"></wsdl:input>
+      <wsdl:output message="tns:submitDocumentResponse" name="submitDocumentResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentServiceSoapBinding" type="tns:DocumentServiceEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="submitDocument">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="submitDocument">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="submitDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentService">
+    <wsdl:port binding="tns:DocumentServiceSoapBinding" name="DocumentServiceEndpointPort">
+      <soap:address location="http://localhost:8080/services/documents"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/documents</con:endpoint></con:endpoints><con:operation id="149e6b06-a87c-4266-b3d7-21ce7075ca27" isOneWay="false" action="" name="submitDocument" bindingOperationName="submitDocument" type="Request-Response" outputName="submitDocumentResponse" inputName="submitDocument" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="c83079b3-907c-43d3-8f71-68871eeb69aa" name="request-with-header-One-attachment"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="WsdlSettings@enable-mtom">true</con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/documents</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:doc="http://example.com/document">\r
+   <soapenv:Header>
+   <doc:MessageHeader>
+        <messageId>12345</messageId>
+        <sender>SystemA</sender>
+        <receiver>SystemB</receiver>
+        <sendDate>2026-08-07T23:15:00</sendDate>
+    </doc:MessageHeader>
+   </soapenv:Header>\r
+   
+   
+   <soapenv:Body>\r
+      <doc:submitDocument>\r
+         <!--Optional:-->\r
+         <request>\r
+            <!--Optional:-->\r
+            <title>Title</title>\r
+            <!--Optional:-->\r
+            <description>Description</description>\r
+            <!--Zero or more repetitions:-->\r
+            <attachments>
+	            <attachment>\r
+	               <!--Optional:-->\r
+	               <filename>attachment.pdf</filename>\r
+	               <!--Optional:-->\r
+	               <mimeType>application/pdf</mimeType>\r
+	               <!--Optional:-->\r
+	               <content>cid:262338659086</content>\r
+	            </attachment>\r
+            </attachments>
+         </request>\r
+      </doc:submitDocument>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:attachment><con:name>DB_Ticket_599328187534.pdf</con:name><con:contentType>application/pdf</con:contentType><con:contentId>262338659086</con:contentId><con:part>262338659086</con:part><con:url>C:/Users/Dell/OneDrive/Desktop/Berlin-Tickets/DB_Ticket_599328187534.pdf</con:url><con:id>12d59c7d-1a0c-483a-b99f-41d1699dcd6d</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/document/DocumentServiceEndpoint/submitDocument"/><con:wsrmConfig version="1.2"/></con:call><con:call id="9e2e9754-8cae-4d3b-a55d-3b84c05bc7a2" name="request-with-header-multiple-attachments"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="WsdlSettings@enable-mtom">true</con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/documents</con:endpoint><con:request><![CDATA[<soapenv:Envelope
+	xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:doc="http://example.com/document">
+	<soapenv:Header>
+		<doc:MessageHeader>
+			<messageId>12345</messageId>
+			<sender>SystemA</sender>
+			<receiver>SystemB</receiver>
+			<sendDate>2026-08-07T23:15:00</sendDate>
+		</doc:MessageHeader>
+	</soapenv:Header>
+	<soapenv:Body>
+		<doc:submitDocument>
+			<!--Optional: -->
+			<request>
+				<!--Optional: -->
+				<title>Title</title>
+				<!--Optional: -->
+				<description>Description</description>
+				<!--Zero or more repetitions: -->
+				<attachments>
+					<attachment>
+						<!--Optional: -->
+						<filename>attachment1.pdf</filename>
+						<!--Optional: -->
+						<mimeType>application/pdf</mimeType>
+						<!--Optional: -->
+						<content>cid:262338659086</content>
+					</attachment>
+					<attachment>
+						<!--Optional: -->
+						<filename>attachment2.pdf</filename>
+						<!--Optional: -->
+						<mimeType>application/pdf</mimeType>
+						<!--Optional: -->
+						<content>cid:262338659087</content>
+					</attachment>
+			          <attachment>
+						<!--Optional: -->
+						<filename>attachment3.png</filename>
+						<!--Optional: -->
+						<mimeType>image/png</mimeType>
+						<!--Optional: -->
+						<content>cid:262338659088</content>
+					</attachment>
+				</attachments>
+			</request>
+		</doc:submitDocument>
+	</soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:attachment><con:name>DB_Ticket_599328187534.pdf</con:name><con:contentType>application/pdf</con:contentType><con:contentId>262338659086</con:contentId><con:part>262338659086</con:part><con:url>C:/Users/Dell/OneDrive/Desktop/Berlin-Tickets/DB_Ticket_599328187534.pdf</con:url><con:id>12d59c7d-1a0c-483a-b99f-41d1699dcd6d</con:id></con:attachment><con:attachment><con:name>DB_Rechnung_451963121758.pdf</con:name><con:contentType>application/pdf</con:contentType><con:contentId>262338659087</con:contentId><con:part>262338659087</con:part><con:url>C:/Users/Dell/OneDrive/Desktop/Berlin-Tickets/DB_Rechnung_451963121758.pdf</con:url><con:id>28c71972-e7a3-4453-a0d5-ff98192a4c0a</con:id></con:attachment><con:attachment><con:name>SoapUI-Spashscreen.png</con:name><con:contentType>image/x-png</con:contentType><con:contentId>262338659088</con:contentId><con:part>262338659088</con:part><con:url>C:/Program Files/SmartBear/SoapUI-5.9.1/bin/SoapUI-Spashscreen.png</con:url><con:id>79114b9d-97f3-4131-bc63-9b9fa8ba76e3</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/document/DocumentServiceEndpoint/submitDocument"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
