@@ -12,6 +12,7 @@ import com.example.soap.model.Attachment;
 import com.example.soap.model.MessageHeader;
 import com.example.soap.model.SubmitDocumentRequest;
 import com.example.soap.model.SubmitDocumentResponse;
+import com.example.soap.service.DocumentPort;
 
 import jakarta.activation.DataHandler;
 import jakarta.jws.WebParam;
@@ -21,9 +22,9 @@ import jakarta.xml.ws.soap.MTOM;
 @Component
 @WebService(targetNamespace = "http://example.com/document", serviceName = "DocumentService")   // MENOUER: DocumentService name of service in WSDL!!!!
 @MTOM  // MENOUER: IMPORTANT HIER MTOM CONFIG:
-public class DocumentServiceEndpoint {
+public class DocumentServiceEndpoint implements DocumentPort {
 
-	public SubmitDocumentResponse submitDocument(
+	public SubmitDocumentResponse submitDocument (
 
 			@WebParam(name = "request") SubmitDocumentRequest request,                 // MENOUER: HERE YOU DEFINE MAPPING BETWEEN XML AND CLASS
 			@WebParam(name = "MessageHeader", header = true) MessageHeader header      // MENOUER: HERE YOU DEFINE MAPPING BETWEEN XML AND CLASS

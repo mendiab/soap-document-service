@@ -30,4 +30,9 @@ public class SubmitDocumentResponse {
 		return reference;
 	}
 
+	@Override
+	public String toString() {
+		return "SubmitDocumentResponse [status=" + status + ", reference=" + reference + "]";
+	}
+
 }

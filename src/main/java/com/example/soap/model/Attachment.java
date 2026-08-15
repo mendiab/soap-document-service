@@ -33,4 +33,20 @@ public class Attachment {
 		return mimeType;
 	}
 
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
+	}
+
+
+	public void setContent(DataHandler content) {
+		this.content = content;
+	}
+	
+
 }

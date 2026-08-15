@@ -47,4 +47,24 @@ public class MessageHeader {
 	}
 
 
+	public void setMessageId(String messageId) {
+		this.messageId = messageId;
+	}
+
+
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+
+
+	public void setSendDate(LocalDateTime sendDate) {
+		this.sendDate = sendDate;
+	}
+
+
 }
